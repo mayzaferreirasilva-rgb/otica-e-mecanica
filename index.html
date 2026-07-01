@@ -8,15 +8,15 @@
 
 <style>
 body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
     background:#eef5ff;
-    text-align:center;
     margin:0;
     padding:20px;
+    text-align:center;
 }
 
 h1{
-    color:#003366;
+    color:#0d47a1;
 }
 
 .mapa{
@@ -26,15 +26,14 @@ h1{
 }
 
 .caixa{
-    background:#4CAF50;
-    color:white;
+    width:240px;
     padding:15px;
     margin:10px;
-    border-radius:12px;
+    color:white;
+    border-radius:10px;
     cursor:pointer;
-    width:220px;
     transition:.3s;
-    box-shadow:0 4px 8px rgba(0,0,0,.2);
+    box-shadow:0 5px 10px rgba(0,0,0,.2);
 }
 
 .caixa:hover{
@@ -47,115 +46,293 @@ h1{
     font-weight:bold;
 }
 
-.pequena{
-    background:#FF9800;
-    cursor:default;
-    width:180px;
+.sub{
+    background:#43A047;
 }
 
 .filhos{
     display:none;
-    margin-left:30px;
-    border-left:3px solid #999;
+    margin-left:35px;
     padding-left:20px;
+    border-left:3px solid #999;
+}
+
+.item{
+    width:220px;
+    background:#FB8C00;
+    color:white;
+    padding:12px;
+    margin:8px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.item:hover{
+    background:#ef6c00;
+}
+
+/* POPUP */
+
+.popup{
+    display:none;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.6);
+}
+
+.popup-content{
+    background:white;
+    width:70%;
+    max-width:650px;
+    margin:80px auto;
+    padding:25px;
+    border-radius:12px;
+    text-align:left;
+    animation:aparecer .3s;
+}
+
+.popup h2{
+    color:#1565C0;
+}
+
+.fechar{
+    float:right;
+    font-size:30px;
+    cursor:pointer;
+    color:red;
+}
+
+@keyframes aparecer{
+    from{
+        transform:scale(.7);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
 }
 </style>
 
 </head>
 <body>
 
-<h1>📚 Mapa Conceitual - Mecânica e Óptica</h1>
+<h1>📚 MAPA CONCEITUAL - MECÂNICA E ÓPTICA</h1>
 
 <div class="mapa">
 
-    <div class="caixa principal" onclick="toggle('mecanica')">
-        ⚙️ Mecânica
-    </div>
+<div class="caixa principal" onclick="toggle('mecanica')">
+⚙️ MECÂNICA
+</div>
 
-    <div id="mecanica" class="filhos">
+<div id="mecanica" class="filhos">
 
-        <div class="caixa" onclick="toggle('leis')">
-            Leis de Newton
-        </div>
+<div class="caixa sub" onclick="toggle('leis')">
+Leis de Newton
+</div>
 
-        <div id="leis" class="filhos">
-            <div class="caixa pequena">1ª Lei - Inércia</div>
-            <div class="caixa pequena">2ª Lei - F = m × a</div>
-            <div class="caixa pequena">3ª Lei - Ação e Reação</div>
-        </div>
+<div id="leis" class="filhos">
 
-        <div class="caixa" onclick="toggle('energia')">
-            Energia
-        </div>
+<div class="item" onclick="mostrar('1ª Lei - Inércia',
+'Um corpo tende a permanecer em repouso ou em movimento retilíneo uniforme enquanto nenhuma força resultante atuar sobre ele.')">
+1ª Lei - Inércia
+</div>
 
-        <div id="energia" class="filhos">
-            <div class="caixa pequena">Energia Cinética</div>
-            <div class="caixa pequena">Energia Potencial</div>
-            <div class="caixa pequena">Energia Mecânica</div>
-        </div>
+<div class="item" onclick="mostrar('2ª Lei - F = m × a',
+'A força resultante é igual ao produto da massa pela aceleração. Quanto maior a força, maior a aceleração.')">
+2ª Lei - F = m × a
+</div>
 
-        <div class="caixa" onclick="toggle('movimento')">
-            Movimento
-        </div>
+<div class="item" onclick="mostrar('3ª Lei - Ação e Reação',
+'Toda ação provoca uma reação de mesma intensidade e direção, porém em sentido contrário.')">
+3ª Lei - Ação e Reação
+</div>
 
-        <div id="movimento" class="filhos">
-            <div class="caixa pequena">MRU</div>
-            <div class="caixa pequena">MRUV</div>
-            <div class="caixa pequena">Aceleração</div>
-        </div>
+</div>
 
-    </div>
+<div class="caixa sub" onclick="toggle('energia')">
+Energia
+</div>
 
-    <div class="caixa principal" onclick="toggle('otica')">
-        🔍 Óptica
-    </div>
+<div id="energia" class="filhos">
 
-    <div id="otica" class="filhos">
+<div class="item" onclick="mostrar('Energia Cinética',
+'É a energia associada ao movimento dos corpos.')">
+Energia Cinética
+</div>
 
-        <div class="caixa" onclick="toggle('reflexao')">
-            Reflexão
-        </div>
+<div class="item" onclick="mostrar('Energia Potencial',
+'É a energia armazenada devido à posição ou altura do corpo.')">
+Energia Potencial
+</div>
 
-        <div id="reflexao" class="filhos">
-            <div class="caixa pequena">Espelho Plano</div>
-            <div class="caixa pequena">Espelho Côncavo</div>
-            <div class="caixa pequena">Espelho Convexo</div>
-        </div>
+<div class="item" onclick="mostrar('Energia Mecânica',
+'É a soma da energia cinética com a energia potencial.')">
+Energia Mecânica
+</div>
 
-        <div class="caixa" onclick="toggle('refracao')">
-            Refração
-        </div>
+</div>
 
-        <div id="refracao" class="filhos">
-            <div class="caixa pequena">Lei de Snell</div>
-            <div class="caixa pequena">Índice de Refração</div>
-            <div class="caixa pequena">Lentes</div>
-        </div>
+<div class="caixa sub" onclick="toggle('movimento')">
+Movimento
+</div>
 
-        <div class="caixa" onclick="toggle('luz')">
-            Luz
-        </div>
+<div id="movimento" class="filhos">
 
-        <div id="luz" class="filhos">
-            <div class="caixa pequena">Propagação Retilínea</div>
-            <div class="caixa pequena">Velocidade da Luz</div>
-            <div class="caixa pequena">Espectro Visível</div>
-        </div>
+<div class="item" onclick="mostrar('MRU',
+'Movimento em linha reta com velocidade constante e aceleração igual a zero.')">
+MRU
+</div>
 
-    </div>
+<div class="item" onclick="mostrar('MRUV',
+'Movimento em linha reta com aceleração constante.')">
+MRUV
+</div>
+
+<div class="item" onclick="mostrar('Aceleração',
+'É a variação da velocidade em relação ao tempo.')">
+Aceleração
+</div>
+
+</div>
+
+</div>
+
+<div class="caixa principal" onclick="toggle('otica')">
+🔍 ÓPTICA
+</div>
+
+<div id="otica" class="filhos">
+
+<div class="caixa sub" onclick="toggle('reflexao')">
+Reflexão
+</div>
+
+<div id="reflexao" class="filhos">
+
+<div class="item" onclick="mostrar('Espelho Plano',
+'Forma imagens virtuais, direitas e do mesmo tamanho do objeto.')">
+Espelho Plano
+</div>
+
+<div class="item" onclick="mostrar('Espelho Côncavo',
+'Pode formar imagens maiores, menores ou invertidas dependendo da posição do objeto.')">
+Espelho Côncavo
+</div>
+
+<div class="item" onclick="mostrar('Espelho Convexo',
+'Forma sempre imagens menores, direitas e virtuais.')">
+Espelho Convexo
+</div>
+
+</div>
+
+<div class="caixa sub" onclick="toggle('refracao')">
+Refração
+</div>
+
+<div id="refracao" class="filhos">
+
+<div class="item" onclick="mostrar('Lei de Snell',
+'Relaciona os ângulos de incidência e refração quando a luz muda de meio.')">
+Lei de Snell
+</div>
+
+<div class="item" onclick="mostrar('Índice de Refração',
+'Indica quanto a velocidade da luz diminui dentro de um material.')">
+Índice de Refração
+</div>
+
+<div class="item" onclick="mostrar('Lentes',
+'Convergem ou divergem os raios luminosos para formar imagens.')">
+Lentes
+</div>
+
+</div>
+
+<div class="caixa sub" onclick="toggle('luz')">
+Luz
+</div>
+
+<div id="luz" class="filhos">
+
+<div class="item" onclick="mostrar('Propagação Retilínea',
+'Em meios homogêneos e transparentes, a luz se propaga em linha reta.')">
+Propagação Retilínea
+</div>
+
+<div class="item" onclick="mostrar('Velocidade da Luz',
+'No vácuo a luz viaja a aproximadamente 300.000 km/s.')">
+Velocidade da Luz
+</div>
+
+<div class="item" onclick="mostrar('Espectro Visível',
+'É a faixa de cores visível ao olho humano, do vermelho ao violeta.')">
+Espectro Visível
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- POPUP -->
+
+<div id="popup" class="popup">
+
+<div class="popup-content">
+
+<span class="fechar" onclick="fechar()">&times;</span>
+
+<h2 id="titulo"></h2>
+
+<p id="texto"></p>
+
+</div>
 
 </div>
 
 <script>
-function toggle(id){
-    const elemento = document.getElementById(id);
 
-    if(elemento.style.display === "block"){
-        elemento.style.display = "none";
-    }else{
-        elemento.style.display = "block";
-    }
+function toggle(id){
+
+const elemento=document.getElementById(id);
+
+if(elemento.style.display=="block"){
+elemento.style.display="none";
+}else{
+elemento.style.display="block";
 }
+
+}
+
+function mostrar(titulo,texto){
+
+document.getElementById("titulo").innerHTML=titulo;
+document.getElementById("texto").innerHTML=texto;
+
+document.getElementById("popup").style.display="block";
+
+}
+
+function fechar(){
+
+document.getElementById("popup").style.display="none";
+
+}
+
+window.onclick=function(event){
+
+if(event.target==document.getElementById("popup")){
+fechar();
+}
+
+}
+
 </script>
 
 </body>
